@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/legacy/image";
+
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -15,8 +15,8 @@ const HeaderLink = [
   { title: "Home", path: "/" },
   { title: "Programs", path: "/programs" },
   { title: "Hubs", path: "/hubs" },
-  { title: "Mentors", path: "/mentors" },
-  { title: "Impact", path: "/impact" },
+  // { title: "Mentors", path: "/mentors" },
+  // { title: "Impact", path: "/impact" },
 ];
 
 export default function Header() {
@@ -33,9 +33,9 @@ export default function Header() {
       <div className="flex items-center gap-4">
         <Link
           href="/"
-          className="text-[#193A8E] font-bold text-1xl flex items-center gap-2"
+          className="text-xl font-bold bg-gradient-to-r from-[#193A8E] to-[#FF6933] bg-clip-text text-transparent"
         >
-          iHaven{" "}
+          iHaven
         </Link>
       </div>
       <div className="w-[45%] hidden md:block">

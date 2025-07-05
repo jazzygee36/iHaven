@@ -23,7 +23,7 @@ interface FooterLinksProps {
 }
 
 const FooterLinks: React.FC<FooterLinksProps> = ({ sections }) => (
-  <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-6 md:gap-8 text-gray-600">
+  <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-6 md:gap-8 text-gray-600 ">
     {sections.map((section) => (
       <div key={section.title}>
         <h3 className="font-semibold text-gray-700 mb-4">{section.title}</h3>
@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full  pt-8 pb-4 border-t px-[5px] ]">
+    <footer className="w-full  pt-8 pb-4 border-t px-[5px] bg-[#1a1a1a33]/[0.50]">
       <div className="px-4">
         <div className="flex flex-col space-y-8">
           <CompanyDetails info={companyInfo} />

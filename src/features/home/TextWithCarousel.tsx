@@ -4,6 +4,7 @@ import HomeButton from "@/components/button";
 import { useEffect, useState } from "react";
 import slideone from "@/assets/images/bannerone.jpg";
 import slidetwo from "@/assets/images/bannertwo.jpg";
+import Image from "next/image";
 
 const slides = [slideone, slidetwo];
 
@@ -49,9 +50,10 @@ const TextWithCarousel = () => {
 
         {/* Carousel */}
         <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
-          <img
+          <Image
             src={slides[current].src}
             alt={`Slide ${current + 1}`}
+            fill
             className="w-full h-full object-cover transition-all duration-500"
           />
 

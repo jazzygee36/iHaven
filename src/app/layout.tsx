@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "iHaven",
-  description: "Empowering",
+  description: "Empowering Northern Nigeria through Digital Innovation",
 };
 
 export default function RootLayout({

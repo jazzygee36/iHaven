@@ -47,4 +47,14 @@ export interface FooterSection {
     fax: string;
   }
   
- 
+ export interface CourseProps {
+  id: number;
+  image: string;
+  course: string;
+  title: string;
+  level: string;
+  duration: string;
+  price: string;
+  rating: number;
+  description:string
+}

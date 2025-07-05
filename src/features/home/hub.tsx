@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 const hubs = [
   {
@@ -29,7 +30,7 @@ const CommunityHubs = () => {
     <section className="bg-gray-100 py-16">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-[25px] md:text-3xl font-bold text-gray-800 text-center mb-10">
-          Our Community Hubs
+          Our Community <span className=" text-[#FF6933]">Hubs</span>
         </h2>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
           We're building physical and virtual spaces to empower developers,
@@ -43,15 +44,19 @@ const CommunityHubs = () => {
               key={idx}
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
             >
-              <img
-                src={hub.image}
-                alt={hub.title}
-                className="h-48 w-full object-cover"
-              />
+              <div className="relative h-48 w-full">
+                <Image
+                  src={hub.image}
+                  alt={hub.title}
+                  fill
+                  className="h-48 w-full object-cover"
+                />
+              </div>
+
               <div className="p-5 space-y-3">
                 <h3 className="text-lg font-bold text-gray-800">{hub.title}</h3>
                 <p className="text-gray-600 text-sm">{hub.description}</p>
-                <button className="text-blue-600 font-medium hover:underline">
+                <button className="text-[#FF6933] font-medium hover:underline">
                   Explore More →
                 </button>
               </div>
