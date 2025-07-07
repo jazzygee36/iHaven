@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface ButtonProps {
   title: string;
   onClick?: () => void;
@@ -49,7 +51,7 @@ export interface FooterSection {
   
  export interface CourseProps {
   id: number;
-  image: string;
+  image: string | StaticImageData;
   course: string;
   title: string;
   level: string;

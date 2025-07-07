@@ -2,8 +2,8 @@
 
 import HomeButton from "@/components/button";
 import { useEffect, useState } from "react";
-import slideone from "@/assets/images/bannerone.jpg";
-import slidetwo from "@/assets/images/bannertwo.jpg";
+import slideone from "@/assets/images/banner.avif";
+import slidetwo from "@/assets/images/bannertwo.webp";
 import Image from "next/image";
 
 const slides = [slideone, slidetwo];
@@ -58,7 +58,7 @@ const TextWithCarousel = () => {
           />
 
           {/* Navigation Buttons */}
-          <button
+          {/* <button
             onClick={prevSlide}
             className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full hover:bg-opacity-100 transition"
           >
@@ -69,7 +69,7 @@ const TextWithCarousel = () => {
             className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full hover:bg-opacity-100 transition"
           >
             ▶
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
