@@ -13,8 +13,8 @@ export const courses: CourseProps[] = [
     duration: "8 Weeks",
     level: "Beginner",
     rating: 4,
-    description:
-      "Learn the building blocks of web development, including HTML, CSS, JavaScript, and modern frameworks like React. Perfect for beginners looking to break into tech.",
+    description: "Learn HTML, CSS, JS, and React.",
+    progress: 65,
   },
   {
     id: 2,
@@ -25,45 +25,43 @@ export const courses: CourseProps[] = [
     duration: "8 Weeks",
     level: "Beginner",
     rating: 4,
-    description:
-      "Master the core of server-side development using Node.js, Express, and databases. Build powerful APIs and backend systems from scratch.",
+    description: "Master server-side development.",
+    progress: 100,
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&h=400",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&h=400",
     title: "Gbenga",
     course: "Mobile Development",
     price: "₦50,000",
     duration: "6 Weeks",
     level: "Intermediate",
     rating: 5,
-    description:
-      "Dive into mobile app development using Flutter and React Native. Build beautiful cross-platform applications with real-world functionality.",
+    description: "Build cross-platform apps.",
+    progress: 30,
   },
   {
     id: 4,
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&h=400",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&h=400",
     title: "Feranmi",
     course: "Data Science",
     price: "₦50,000",
     duration: "10 Weeks",
     level: "Advanced",
     rating: 4,
-    description:
-      "Unlock the power of data with Python, Pandas, and machine learning techniques. Ideal for those aiming to work in analytics or AI.",
+    description: "Learn Python, Pandas & ML.",
+    progress: 100,
   },
   {
     id: 5,
-    image:Intro,
+    image: Intro,
     title: "Samson",
     course: "Intro to Computer",
     price: "₦50,000",
     duration: "8 Weeks",
     level: "Beginner",
     rating: 4,
-    description:
-      "Master the core of server-side development using Node.js, Express, and databases. Build powerful APIs and backend systems from scratch.",
+    description: "Fundamentals of computer science.",
+    progress: 0,
   },
 ];

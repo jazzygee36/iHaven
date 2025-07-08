@@ -22,13 +22,13 @@ const TextWithCarousel = () => {
     }, 4000);
 
     return () => clearInterval(interval); // Cleanup on unmount
-  }, []);
+  }, []); 
 
   return (
     <section className="w-full max-w-7xl mx-auto p-6 bg-[#1a1a1a33]/[0.30]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Text Block */}
-        <div className="space-y-6">
+        <div className="space-y-6" data-aos="fade-right">
           <h2 className="text-[25px] md:text-3xl font-bold text-gray-800">
             Empowering Northern Nigeria through Digital Innovation
           </h2>
@@ -49,7 +49,7 @@ const TextWithCarousel = () => {
         </div>
 
         {/* Carousel */}
-        <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
+        <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg" data-aos="fade-left">
           <Image
             src={slides[current].src}
             alt={`Slide ${current + 1}`}

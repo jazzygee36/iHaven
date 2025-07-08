@@ -1,8 +1,9 @@
+import MyLearningPage from '@/features/my-learning/page'
 import React from 'react'
 
 const MyLearning = () => {
   return (
-    <div>MyLearning</div>
+    <div><MyLearningPage/></div>
   )
 }
 

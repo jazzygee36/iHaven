@@ -19,6 +19,8 @@ export interface InputProps {
   type: string;
   placeholder: string;
   readOnly?: boolean;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  // onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
   label?: string;
   name?: string;
   value?: string;
@@ -58,5 +60,7 @@ export interface FooterSection {
   duration: string;
   price: string;
   rating: number;
-  description:string
+  description:string;
+  progress: number;
+  isCompleted?: boolean;
 }

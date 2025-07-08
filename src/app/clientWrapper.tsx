@@ -9,33 +9,29 @@ import "nprogress/nprogress.css"; // Import NProgress styles
 import Loading from "@/app/loading";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
-export default function ClientWrapper({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const router = useRouter();
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { TawkToWidget } from "@/components/TawkToWidget";
+export default function ClientWrapper({ children }: { children: React.ReactNode }) {
+  const [hasMounted, setHasMounted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [token, setToken] = useState<boolean>(false);
-  console.log('token', token)
-
-  const handleToken = () => {
-    setToken(true);
-  };
-   
+  const [token, setToken] = useState(false);
 
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
-    NProgress.start(); // Optional
+    NProgress.start();
 
-    // Simulate loading for route change
     const timeout = setTimeout(() => {
       setLoading(false);
-      NProgress.done(); // Optional
-    }, 500); // Adjust delay as needed
+      NProgress.done();
+    }, 500);
 
     return () => {
       clearTimeout(timeout);
@@ -46,13 +42,18 @@ export default function ClientWrapper({
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      handleToken();
+      setToken(true);
     } else {
       setToken(false);
     }
-       router.refresh();
-
+    router.refresh();
   }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  if (!hasMounted) return null; // Prevent hydration mismatch
 
   return (
     <>
@@ -61,10 +62,10 @@ export default function ClientWrapper({
           <Loading />
         </div>
       )}
-
       <div className="transition-opacity duration-300">
-        <Header   setToken={setToken} token={token}/>
+        <Header setToken={setToken} token={token} />
         {children}
+         <TawkToWidget />
         <Footer />
       </div>
     </>

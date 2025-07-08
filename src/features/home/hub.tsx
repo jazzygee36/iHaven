@@ -32,7 +32,7 @@ const CommunityHubs = () => {
         <h2 className="text-[25px] md:text-3xl font-bold text-gray-800 text-center mb-10">
           Our Community <span className=" text-[#FF6933]">Hubs</span>
         </h2>
-        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12" data-aos="fade-up">
           We're building physical and virtual spaces to empower developers,
           designers, and digital creators in every region. Join a hub near you
           and grow with others.

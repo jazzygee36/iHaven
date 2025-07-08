@@ -16,12 +16,12 @@ export default function Home() {
       <CourseCards />
       <HubDetails/>
       <AutoScrollCardSection/>
-
       <VideoCarousel/>
       <Testimony/>
       <StepProcess/>
       <CallToAction/>
       <FAQ/>
+      
     </div>
   );
 }

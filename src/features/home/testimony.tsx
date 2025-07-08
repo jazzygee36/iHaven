@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-
 const Testimony = () => {
   return (
     <section className="bg-[#FF6933]/[0.10] via-[#E8ECFF] to-[#DDE3FF] py-20">
@@ -10,7 +9,7 @@ const Testimony = () => {
           What Our Students Say
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="flip-left">
           {[
             {
               name: "Amina Musa",
@@ -39,9 +38,8 @@ const Testimony = () => {
                 src="https://s.udemycdn.com/browse_components/student-quote-unit/quote.svg"
                 alt="Quote"
                 className="w-6 h-6 mb-4 opacity-80"
-        width={100}
-        height={100}
-
+                width={100}
+                height={100}
               />
               <p className="text-gray-700 italic text-base leading-relaxed mb-6">
                 “{student.quote}”
