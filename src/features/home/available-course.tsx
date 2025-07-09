@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { courses } from "@/utils/courses"; // ✅ Your array
+import { courses } from "@/utils/courses"; // 
 import { CourseProps } from "@/utils/interface";
 import HomeButton from "@/components/button";
 
@@ -16,7 +16,7 @@ const CourseCards = () => {
 
   const handleNext = () => {
     setCurrentPage(
-      (prev) => (prev + 1 >= totalPages ? 0 : prev + 1) // loop back to first page
+      (prev) => (prev + 1 >= totalPages ? 0 : prev + 1) 
     );
   };
 

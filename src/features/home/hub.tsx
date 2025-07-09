@@ -1,4 +1,5 @@
 "use client";
+import HomeButton from "@/components/button";
 import Image from "next/image";
 
 const hubs = [
@@ -56,9 +57,10 @@ const CommunityHubs = () => {
               <div className="p-5 space-y-3">
                 <h3 className="text-lg font-bold text-gray-800">{hub.title}</h3>
                 <p className="text-gray-600 text-sm">{hub.description}</p>
-                <button className="text-[#FF6933] font-medium hover:underline">
+                {/* <button className="text-[#FF6933] font-medium hover:underline">
                   Explore More →
-                </button>
+                </button> */}
+                <HomeButton title={" Explore More →"} type={"button"} bg={"transparent"} width={""} height={""} color="#FF6933"/>
               </div>
             </div>
           ))}

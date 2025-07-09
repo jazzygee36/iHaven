@@ -5,15 +5,17 @@ import { useEffect, useState } from "react";
 import slideone from "@/assets/images/banner.avif";
 import slidetwo from "@/assets/images/bannertwo.webp";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const slides = [slideone, slidetwo];
 
 const TextWithCarousel = () => {
+    const router = useRouter();
+  
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
-  const prevSlide = () =>
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+
 
   // Auto-slide every 4 seconds
   useEffect(() => {
@@ -30,7 +32,7 @@ const TextWithCarousel = () => {
         {/* Text Block */}
         <div className="space-y-6" data-aos="fade-right">
           <h2 className="text-[25px] md:text-3xl font-bold text-gray-800">
-            Empowering Northern Nigeria through Digital Innovation
+            Empowering Northern Nigeria through <span className="bg-gradient-to-r from-[#193A8E] to-[#FF6933] bg-clip-text text-transparent">Digital Innovation</span>.
           </h2>
           <p className="text-gray-600">
             Transform your future with comprehensive digital skills training.
@@ -45,6 +47,7 @@ const TextWithCarousel = () => {
             bg={"#FF6933"}
             width={""}
             height={"45px"}
+            onClick={() => router.push('/register')}
           />
         </div>
 
@@ -57,19 +60,6 @@ const TextWithCarousel = () => {
             className="w-full h-full object-cover transition-all duration-500"
           />
 
-          {/* Navigation Buttons */}
-          {/* <button
-            onClick={prevSlide}
-            className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full hover:bg-opacity-100 transition"
-          >
-            ◀
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-70 p-2 rounded-full hover:bg-opacity-100 transition"
-          >
-            ▶
-          </button> */}
         </div>
       </div>
     </section>
