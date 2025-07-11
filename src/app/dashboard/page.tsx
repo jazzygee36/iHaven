@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const MainDashboard = () => {
   return (
-    <div>
+    <>
       <Dashboard />
       <section className="max-w-7xl mx-auto px-3 md:px-10 py-12">
         <h2 className="text-[25px] md:text-3xl font-bold text-center text-gray-800 mb-10">
@@ -65,7 +65,7 @@ const MainDashboard = () => {
         </div>
       </section>
       <AutoScrollCardSection />
-    </div>
+    </>
   );
 };
 

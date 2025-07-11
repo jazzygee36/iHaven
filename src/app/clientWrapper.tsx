@@ -9,14 +9,20 @@ import "nprogress/nprogress.css"; // Import NProgress styles
 import Loading from "@/app/loading";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { TawkToWidget } from "@/components/TawkToWidget";
-export default function ClientWrapper({ children }: { children: React.ReactNode }) {
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+export default function ClientWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [hasMounted, setHasMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState(false);
 
+  const [queryClient] = useState(() => new QueryClient());
   const pathname = usePathname();
   const router = useRouter();
 
@@ -63,10 +69,12 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
         </div>
       )}
       <div className="transition-opacity duration-300">
-        <Header setToken={setToken} token={token} />
-        {children}
-         <TawkToWidget />
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <Header  />
+          {children}
+          <TawkToWidget />
+          <Footer />
+        </QueryClientProvider>
       </div>
     </>
   );

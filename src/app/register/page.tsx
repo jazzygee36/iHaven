@@ -7,8 +7,25 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, ContactFormData } from "@/utils/validation";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "@/api/lib/auth";
 
 const Register = () => {
+  const mutation = useMutation({
+    mutationFn: registerUser,
+
+    onSuccess: (data) => {
+      console.log("User registered:", data);
+      router.push("/students-portal");
+    },
+    onError: (error: any) => {
+      console.error(
+        "Registration error:",
+        error.response?.data || error.message
+      );
+    },
+  });
+
   const router = useRouter();
   const {
     register,
@@ -19,8 +36,11 @@ const Register = () => {
   });
 
   const onSubmit = (data: ContactFormData) => {
-    console.log("Form submitted:", data);
-    // You can send this data to your API here
+    mutation.mutate({
+      fullNames: data.fullNames, // map to backend expected field
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
@@ -35,16 +55,24 @@ const Register = () => {
           </h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            {mutation.isError && (
+              <p className="text-red-500 text-sm text-center mb-2 ">
+                {(mutation.error as any)?.response?.data?.message ||
+                  "Registration failed."}
+              </p>
+            )}
             {/* Full Name */}
             <div>
               <HomeInput
                 type={"text"}
                 placeholder={"Enter Name"}
                 label="Enter Full Name"
-                {...register("names")}
+                {...register("fullNames")}
               />
-              {errors.names && (
-                <p className="text-red-500 text-sm">{errors.names.message}</p>
+              {errors.fullNames && (
+                <p className="text-red-500 text-sm">
+                  {errors.fullNames.message}
+                </p>
               )}
             </div>
             <div>
@@ -70,20 +98,27 @@ const Register = () => {
                 {...register("password")}
               />
               {errors.password && (
-                <p className="text-red-500 text-sm">{errors.password.message}</p>
+                <p className="text-red-500 text-sm">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 
             {/* Submit */}
             <div>
               <HomeButton
-                title={"Sign Up"}
+                title={mutation.isPending ? "Registering..." : "Sign Up"}
                 type={"submit"}
                 bg={"#193A8E"}
                 width={"100%"}
                 height={"45px"}
+                disabled={mutation.isPending}
               />
             </div>
+
+            {/* {mutation.isSuccess && (
+              <p className="text-green-500 text-sm">Registered successfully!</p>
+            )} */}
           </form>
 
           <p className="text-sm text-center text-gray-500 mt-4">

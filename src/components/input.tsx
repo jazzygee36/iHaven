@@ -18,6 +18,7 @@ const HomeInput = forwardRef<HTMLInputElement, InputProps>(
       borderRadius,
       width,
       onKeyDown,
+      disabled,
     },
     ref
   ) => {
@@ -41,6 +42,7 @@ const HomeInput = forwardRef<HTMLInputElement, InputProps>(
             placeholder={placeholder}
             name={name}
             value={value}
+            disabled={disabled}
             onChange={onChange}
             onKeyDown={onKeyDown}
             onKeyPress={onKeyPress}

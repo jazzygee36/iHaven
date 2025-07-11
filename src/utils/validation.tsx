@@ -2,7 +2,7 @@
 import { z } from "zod";
 
 export const contactFormSchema = z.object({
-  names: z.string().min(2, "Full name must be at least 2 characters"),
+  fullNames: z.string().min(2, "Full name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
   password: z
     .string()

@@ -7,9 +7,12 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema, LoginFormData } from "@/utils/validation";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "@/api/lib/auth";
 
 const StudentsPortal = () => {
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -19,10 +22,27 @@ const StudentsPortal = () => {
   });
 
   const onSubmit = (data: LoginFormData) => {
-    console.log("Form submitted:", data);
-    localStorage.setItem("token", "token"); // Simulate login
-  router.push("/dashboard");
+    mutation.mutate({
+      email: data.email,
+      password: data.password,
+    });
   };
+
+  const mutation = useMutation({
+    mutationFn: loginUser,
+
+    onSuccess: (data) => {
+      console.log("User login:", data);
+      localStorage.setItem("token", data.accessToken); // Store token in localStorage
+      router.push("/dashboard");
+    },
+    onError: (error: any) => {
+      console.error(
+        "Registration error:",
+        error.response?.data || error.message
+      );
+    },
+  });
 
   return (
     <div className="bg-gray-50">
@@ -36,6 +56,12 @@ const StudentsPortal = () => {
           </h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            {mutation.isError && (
+              <p className="text-red-500 text-sm text-center mb-2 ">
+                {(mutation.error as any)?.response?.data?.message ||
+                  "Login failed."}
+              </p>
+            )}
             <div>
               <HomeInput
                 type={"email"}
@@ -68,11 +94,12 @@ const StudentsPortal = () => {
             {/* Submit */}
             <div>
               <HomeButton
-                title={"Login"}
+                title={mutation.isPending ? "Login..." : "Login"}
                 type={"submit"}
                 bg={"#193A8E"}
                 width={"100%"}
                 height={"45px"}
+                disabled={mutation.isPending}
               />
             </div>
           </form>

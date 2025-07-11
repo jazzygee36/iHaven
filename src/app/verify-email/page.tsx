@@ -20,12 +20,13 @@ export default function VerifyEmailPage() {
             setStatus(data);
             setTimeout(() => {
               router.push('/'); // Redirect to homepage after success
-            }, 5000);
+            }, 3000);
           } else {
             setStatus('Verification failed: ' + data);
           }
         })
-        .catch(() => {
+        .catch((err) => {
+           console.error('Verification error:', err);
           setStatus('Something went wrong');
         });
     } else {
@@ -34,7 +35,7 @@ export default function VerifyEmailPage() {
   }, []);
 
   return (
-    <main className="p-4">
+    <main className="p-4 text-center text-[green]">
       <h1>{status}</h1>
     </main>
   );
