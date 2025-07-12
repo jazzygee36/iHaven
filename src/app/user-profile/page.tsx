@@ -7,6 +7,7 @@ import HomeInput from "@/components/input";
 import HomeButton from "@/components/button";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/lib/profile";
+import { getCookie } from "cookies-next";
 
 const UserProfileCard = () => {
   const [editing, setEditing] = useState(false);
@@ -35,7 +36,7 @@ const UserProfileCard = () => {
   const saveChanges = async () => {
     try {
       setSaving(true);
-      const token = localStorage.getItem("token");
+      const token = getCookie("token");
       await axios.put(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/update-profile`,
         profile,

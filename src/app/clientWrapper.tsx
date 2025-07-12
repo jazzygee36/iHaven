@@ -13,6 +13,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { TawkToWidget } from "@/components/TawkToWidget";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { getCookie } from 'cookies-next';
+
 export default function ClientWrapper({
   children,
 }: {
@@ -46,7 +48,7 @@ export default function ClientWrapper({
   }, [pathname]);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = getCookie("token");
     if (storedToken) {
       setToken(true);
     } else {

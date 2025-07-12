@@ -8,6 +8,7 @@ import ToggleMenu from "@/assets/icons/toggle";
 import HomeInput from "./input";
 import Avater from "@/assets/icons/user";
 import { courses } from "@/utils/courses";
+import { getCookie, deleteCookie } from "cookies-next";
 
 const publicLinks = [
   { title: "Home", path: "/" },
@@ -33,7 +34,7 @@ export default function Header() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     setIsLoggedIn(!!token);
   }, [pathname]);
 
@@ -55,7 +56,7 @@ export default function Header() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    deleteCookie("token", { path: "/" });
     setIsLoggedIn(false);
     router.push("/");
     router.refresh();
@@ -223,7 +224,7 @@ export default function Header() {
           ))}
 
           {isLoggedIn ? (
-            <div className='text-center'>
+            <div className="text-center">
               <li
                 onClick={() => router.push("/user-profile")}
                 className="block w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"

@@ -32,8 +32,10 @@ const StudentsPortal = () => {
     mutationFn: loginUser,
 
     onSuccess: (data) => {
-      console.log("User login:", data);
-      localStorage.setItem("token", data.accessToken); // Store token in localStorage
+    
+     
+      // Set token as cookie
+      document.cookie = `token=${data.accessToken}; path=/; max-age=86400; SameSite=Strict; Secure`;
       router.push("/dashboard");
     },
     onError: (error: any) => {

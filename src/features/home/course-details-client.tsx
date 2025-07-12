@@ -8,7 +8,7 @@ import BackArrow from "@/assets/icons/back-arrow";
 import { useRouter } from "next/navigation";
 import { Modal } from "@/components/modal";
 import { useState } from "react";
-import HomeInput from "@/components/input";
+import { getCookie } from 'cookies-next';
 import CourseEnrollmentModal from "../courses-details/courses-enrol-modal";
 
 interface Props {
@@ -28,7 +28,7 @@ export default function CourseDetailsClient({ course }: Props) {
   const route = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const handleLearningType = () => {
-    const isLoggedIn = localStorage.getItem("token");
+    const isLoggedIn = getCookie("token");
     if (!isLoggedIn) {
       route.push("/students-portal");
       return;
