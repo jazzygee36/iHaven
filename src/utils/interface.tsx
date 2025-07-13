@@ -63,4 +63,8 @@ export interface CourseProps {
   description: string;
   progress: number;
   isCompleted?: boolean;
+  curriculum?: {
+    section: string;
+    topics: string[];
+  }[];
 }

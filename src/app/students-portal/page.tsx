@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import BackArrow from "@/assets/icons/back-arrow";
 import HomeButton from "@/components/button";
 import HomeInput from "@/components/input";
+import Toast from "@/components/toast"; 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +14,7 @@ import { loginUser } from "@/api/lib/auth";
 
 const StudentsPortal = () => {
   const router = useRouter();
+  const [showToast, setShowToast] = useState(false); // ✅ Toast state
 
   const {
     register,
@@ -21,6 +24,23 @@ const StudentsPortal = () => {
     resolver: zodResolver(loginFormSchema),
   });
 
+  const mutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      document.cookie = `token=${data.accessToken}; path=/; max-age=86400; SameSite=Strict; Secure`;
+      setShowToast(true); // 
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000); // 
+    },
+    onError: (error: any) => {
+      console.error(
+        "Login error:",
+        error.response?.data || error.message
+      );
+    },
+  });
+
   const onSubmit = (data: LoginFormData) => {
     mutation.mutate({
       email: data.email,
@@ -28,29 +48,12 @@ const StudentsPortal = () => {
     });
   };
 
-  const mutation = useMutation({
-    mutationFn: loginUser,
-
-    onSuccess: (data) => {
-    
-     
-      // Set token as cookie
-      document.cookie = `token=${data.accessToken}; path=/; max-age=86400; SameSite=Strict; Secure`;
-      router.push("/dashboard");
-    },
-    onError: (error: any) => {
-      console.error(
-        "Registration error:",
-        error.response?.data || error.message
-      );
-    },
-  });
-
   return (
     <div className="bg-gray-50">
-      <div className=" mx-6 py-4 ">
+      <div className="mx-6 py-4">
         <BackArrow />
       </div>
+
       <div className="mt-10 pb-16 flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
@@ -59,11 +62,12 @@ const StudentsPortal = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {mutation.isError && (
-              <p className="text-red-500 text-sm text-center mb-2 ">
+              <p className="text-red-500 text-sm text-center mb-2">
                 {(mutation.error as any)?.response?.data?.message ||
                   "Login failed."}
               </p>
             )}
+
             <div>
               <HomeInput
                 type={"email"}
@@ -76,9 +80,6 @@ const StudentsPortal = () => {
               )}
             </div>
 
-            {/* Email */}
-
-            {/* Password */}
             <div>
               <HomeInput
                 type={"password"}
@@ -93,14 +94,13 @@ const StudentsPortal = () => {
               )}
             </div>
 
-            {/* Submit */}
             <div>
               <HomeButton
-                title={mutation.isPending ? "Login..." : "Login"}
-                type={"submit"}
-                bg={"#193A8E"}
-                width={"100%"}
-                height={"45px"}
+                title={mutation.isPending ? "Logging in..." : "Login"}
+                type="submit"
+                bg="#193A8E"
+                width="100%"
+                height="45px"
                 disabled={mutation.isPending}
               />
             </div>
@@ -110,16 +110,24 @@ const StudentsPortal = () => {
             Already have an account?{" "}
             <span
               className="text-blue-600 hover:underline cursor-pointer"
-              onClick={() => {
-                router.push("/register");
-              }}
+              onClick={() => router.push("/register")}
             >
               Sign up
             </span>
           </p>
         </div>
       </div>
+
+      {/* ✅ Toast Notification */}
+      {showToast && (
+        <Toast
+          message="Login successful! Redirecting..."
+          type="success"
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </div>
   );
 };
+
 export default StudentsPortal;
