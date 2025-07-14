@@ -55,7 +55,7 @@ const AutoScrollCardSection = () => {
       setScrollIndex((prev) => {
         const next = prev + 1;
         container.scrollTo({
-          left: next * (cardWidth + 16),
+          left: next * (cardWidth + 24), // 24px gap
           behavior: "smooth",
         });
         return next >= cards.length - 2 ? 0 : next;
@@ -66,10 +66,10 @@ const AutoScrollCardSection = () => {
   }, []);
 
   return (
-    <section className="bg-[#f9fafb] py-16">
+    <section className="bg-gradient-to-b from-[#ffffff] to-[#f3f4f6] py-16">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-[25px] md:text-3xl font-bold text-center text-gray-800 mb-10">
-          Featured Micro-Courses
+        <h2 className="text-[25px] md:text-3xl font-bold text-center text-gray-900 mb-10">
+          Featured <span className="text-[#FF5722]">Micro-Courses</span>
         </h2>
 
         <div
@@ -79,22 +79,22 @@ const AutoScrollCardSection = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="min-w-[260px] bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all flex-shrink-0"
+              className="min-w-[260px] bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 ease-in-out flex-shrink-0"
             >
               <div className="relative w-full h-40">
                 <Image
                   src={card.image.src}
                   alt={card.title}
                   fill
-                  className="w-full h-40 object-cover"
+                  className="object-cover rounded-t-xl"
                 />
               </div>
 
               <div className="p-4 space-y-2">
-                <p className="text-xs font-medium text-indigo-600">
+                <p className="text-xs font-medium text-indigo-600 uppercase tracking-wide">
                   {card.category}
                 </p>
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg font-semibold text-gray-800 leading-tight">
                   {card.title}
                 </h3>
                 <p className="text-sm text-gray-500">⏱ {card.duration}</p>
@@ -106,4 +106,5 @@ const AutoScrollCardSection = () => {
     </section>
   );
 };
+
 export default AutoScrollCardSection;

@@ -72,7 +72,7 @@ const CourseCards = () => {
                     {course.price}
                   </span>
                   <span className="underline text-[#FF6933] px-3 py-1 rounded-full font-medium">
-                    Enrol
+                    Enroll
                   </span>
                 </div>
               </div>
