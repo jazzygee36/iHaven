@@ -1,20 +1,14 @@
 "use client";
 
 import { CompanyInfo, FooterSection } from "@/utils/interface";
-import Image from "next/image";
 
 interface CompanyDetailsProps {
   info: CompanyInfo;
 }
 
 export const CompanyDetails: React.FC<CompanyDetailsProps> = ({ info }) => (
-  <div className="">
-    <div>
-      {/* <div className="relative my-4 inline-block">
-       
-        Logo
-      </div> */}
-    </div>
+  <div className="text-white">
+    {/* Add logo or company details here if needed */}
   </div>
 );
 
@@ -23,21 +17,20 @@ interface FooterLinksProps {
 }
 
 const FooterLinks: React.FC<FooterLinksProps> = ({ sections }) => (
-  <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-6 md:gap-8 text-gray-600 ">
+  <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-6 md:gap-8 text-white">
     {sections.map((section) => (
       <div key={section.title}>
-        <h3 className="font-semibold text-gray-700 mb-4">{section.title}</h3>
+        <h3 className="font-semibold text-white mb-4">{section.title}</h3>
 
-        {/* Handle string vs array */}
         {typeof section.links === "string" ? (
-          <p className="text-base text-gray-600 ">{section.links}</p>
+          <p className="text-base text-white">{section.links}</p>
         ) : (
           <ul className="space-y-2 text-sm md:text-base">
             {section.links.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-gray-600 hover:text-primary hover:font-medium transition-all"
+                  className="text-white hover:text-[#FF6933] hover:font-medium transition-all"
                 >
                   {link.label}
                 </a>
@@ -50,12 +43,11 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ sections }) => (
   </div>
 );
 
-
 const BottomBar: React.FC = () => (
-  <div className="border-t pt-4 mt-8">
+  <div className="border-t border-gray-700 pt-4 mt-8">
     <div className="flex flex-col md:flex-row justify-center items-center gap-y-6">
-      <p className="text-gray-600 text-sm text-center leading-8">
-        ©2024 <span className="font-medium">iHaven</span> . All rights reserved.
+      <p className="text-white text-sm text-center leading-8">
+        ©2025 <span className="font-medium">iHaven</span> . All rights reserved.
         Empowering Northern Nigeria's digital future.
       </p>
     </div>
@@ -76,18 +68,16 @@ const Footer: React.FC = () => {
       links:
         "Empowering Northern Nigeria through digital innovation and comprehensive technology education. Building the next generation of tech leaders across the region.",
     },
-
     {
       title: "SUPPORT",
       links: [
-        { label: "FAQ", href: "/faq" },
-        { label: "Contact Us", href: "/contact" },
-        { label: "Online Chat", href: "/chat" },
-        { label: "Contact Customer Services", href: "/customer-services" },
-        { label: "Safety Resources Center", href: "/safety-resources" },
+        { label: "FAQ", href: "/" },
+        { label: "Contact Us", href: "/" },
+        { label: "Online Chat", href: "/" },
+        { label: "Contact Customer Services", href: "/" },
+        { label: "Safety Resources Center", href: "/" },
       ],
     },
-
     {
       title: "Programe",
       links: [
@@ -97,7 +87,6 @@ const Footer: React.FC = () => {
         { label: "UI/UX Design", href: "/" },
       ],
     },
-
     {
       title: "COMPANY",
       links: [
@@ -110,11 +99,10 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full  pt-8 pb-4 border-t px-[5px] bg-[#1a1a1a33]/[0.50]">
-      <div className="px-4">
-        <div className="flex flex-col space-y-8">
+    <footer className="w-full pt-12 pb-6 px-4 bg-[#193A8E] text-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col space-y-12">
           <CompanyDetails info={companyInfo} />
-
           <FooterLinks sections={footerSections} />
           <BottomBar />
         </div>

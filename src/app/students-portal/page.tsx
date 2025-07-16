@@ -93,6 +93,7 @@ const StudentsPortal = () => {
                 </p>
               )}
             </div>
+            <p onClick={() => router.push('/forget-password')} className='text-[#193A8E] relative  font-medium hover:underline cursor-pointer text-sm'>Forget Password?</p>
 
             <div>
               <HomeButton
