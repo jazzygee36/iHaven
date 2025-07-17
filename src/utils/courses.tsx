@@ -14,6 +14,7 @@ export const courses: CourseProps[] = [
     level: "Beginner",
     rating: 4,
     description: "Learn HTML, CSS, JS, and React.",
+    instructorsName: "",
     progress: 65,
     curriculum: [
       {
@@ -74,6 +75,8 @@ export const courses: CourseProps[] = [
     rating: 4,
     description: "Master server-side development.",
     progress: 100,
+    instructorsName: "",
+
     curriculum: [
       {
         section: "Node.js & Environment Setup",
@@ -134,6 +137,8 @@ export const courses: CourseProps[] = [
     rating: 5,
     description: "Build cross-platform apps.",
     progress: 30,
+    instructorsName: "",
+
     curriculum: [
       {
         section: "Introduction to Mobile App Development",
@@ -191,6 +196,8 @@ export const courses: CourseProps[] = [
     rating: 4,
     description: "Learn Python, Pandas & ML.",
     progress: 100,
+    instructorsName: "",
+
     curriculum: [
       {
         section: "Python for Data Science",
@@ -243,6 +250,8 @@ export const courses: CourseProps[] = [
     price: "₦50,000",
     duration: "8 Weeks",
     level: "Beginner",
+    instructorsName: "",
+
     rating: 4,
     description: "Fundamentals of computer science.",
     progress: 0,

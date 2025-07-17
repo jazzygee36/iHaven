@@ -1,13 +1,23 @@
+"use client";
 import Dashboard from "@/features/dashboard/page";
 import CourseCards from "@/features/home/available-course";
 import AutoScrollCardSection from "@/features/home/featured-courses";
-import { courses } from "@/utils/courses";
+
 import { CourseProps } from "@/utils/interface";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { getAllCourses } from "@/api/lib/all-course";
 
 const MainDashboard = () => {
+  
+  const { data: courses = [], isLoading } = useQuery({
+    queryKey: ["courses"],
+    queryFn: getAllCourses,
+  });
+
+ 
   return (
     <>
       <Dashboard />
@@ -17,46 +27,56 @@ const MainDashboard = () => {
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8">
-          {courses.map((course: CourseProps) => (
+          {courses.map((course: CourseProps, index: any) => (
             <Link
-              key={course.id}
-              href={`/course-details/${course.id}`} // ✅ Use ID
+              key={index}
+              href={`/course-details/${course._id}`} // ✅ Use ID
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
             >
               <div className="relative w-full h-48">
-                <Image
-                  src={course.image}
-                  alt={course.course}
-                  fill
-                  className="object-cover rounded-lg"
-                  priority // optional: preload important images
-                />
+                {typeof course.image === "string" &&
+                course.image.trim() !== "" ? (
+                  <Image
+                    src={course.image}
+                    alt={'course'}
+                    fill
+                    className="object-cover rounded-lg"
+                    priority
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm rounded-lg">
+                    No image
+                  </div>
+                )}
               </div>
 
               <div className="p-2 md:p-5 space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-yellow-500 flex items-center gap-1">
+                  {/* <span className="text-yellow-500 flex items-center gap-1">
                     {"★".repeat(course.rating)}
                     {"☆".repeat(5 - course.rating)}
-                  </span>
+                  </span> */}
+                  <h3 className="text-lg font-semibold text-gray-800">
+                  {course.title}
+                </h3>
                   <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
                     {course.duration}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {course.course}
-                </h3>
+                {/* <h3 className="text-lg font-semibold text-gray-800">
+                  {course.title}
+                </h3> */}
                 <p className="text-sm text-gray-500">
-                  Instructor: {course.title}
+                  Instructor: {course.instructorsName}
                 </p>
 
                 <div className="flex justify-between items-center text-sm text-gray-600 mt-3">
                   <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
-                    {course.price}
+                    ₦{course.price}
                   </span>
                   <span className="underline text-[#FF6933] px-3 py-1 rounded-full font-medium">
-                    Enrol
+                    Enroll
                   </span>
                 </div>
               </div>

@@ -13,7 +13,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { TawkToWidget } from "@/components/TawkToWidget";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { getCookie } from 'cookies-next';
+import { getCookie } from "cookies-next";
 
 export default function ClientWrapper({
   children,
@@ -27,6 +27,18 @@ export default function ClientWrapper({
   const [queryClient] = useState(() => new QueryClient());
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      document.cookie = "token=; Max-Age=0; path=/;";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   useEffect(() => {
     setHasMounted(true);
@@ -72,7 +84,7 @@ export default function ClientWrapper({
       )}
       <div className="transition-opacity duration-300">
         <QueryClientProvider client={queryClient}>
-          <Header  />
+          <Header />
           {children}
           <TawkToWidget />
           <Footer />

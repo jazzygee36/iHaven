@@ -15,20 +15,18 @@ import { getProfile } from "@/api/lib/profile";
 
 interface Props {
   course: {
-    id: number;
+    _id: string;
     title: string;
-    image: string | StaticImageData;
-    course: string;
-    level: string;
+    image: string;
+    instructorsName: string;
     duration: string;
     price: string;
-    description: string;
-     curriculum?: {
-      section: string;
-      topics: string[];
-    }[];
+    category: string;
+    curriculum: string; 
   };
 }
+
+
 
 export default function CourseDetailsClient({ course }: Props) {
   const route = useRouter();
@@ -60,7 +58,7 @@ export default function CourseDetailsClient({ course }: Props) {
     }
 
     const handler = (window as any).PaystackPop.setup({
-      key: "pk_test_bb303c70de3d313ccf557c37b226540818e7fc03",
+      key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
       email: `${profile?.email || "user@example.com"}`,
       amount: amountInKobo,
       currency: "NGN",
@@ -70,7 +68,7 @@ export default function CourseDetailsClient({ course }: Props) {
           {
             display_name: course.title,
             variable_name: "course",
-            value: course.course,
+            value: course.title,
           },
         ],
       },
@@ -93,25 +91,25 @@ export default function CourseDetailsClient({ course }: Props) {
           <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden shadow-md">
             <Image
               src={course.image}
-              alt={course.course}
+              alt={course.title}
               fill
               className="object-cover"
             />
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-3xl font-bold text-gray-800">{course.course}</h1>
-            <p className="text-gray-600">{course.description}</p>
+            <h1 className="text-3xl font-bold text-gray-800">{course.title}</h1>
+            {/* <p className="text-gray-600">{course.curriculum}</p> */}
           </div>
 
           <div className="grid grid-cols-2 gap-4 text-sm mt-6 text-gray-700">
             <div>
               <p className="font-semibold">Instructor</p>
-              <p>{course.title}</p>
+              <p>{course.instructorsName}</p>
             </div>
             <div>
-              <p className="font-semibold">Level</p>
-              <p>{course.level}</p>
+              <p className="font-semibold">Category</p>
+              <p>{course.category}</p>
             </div>
             <div>
               <p className="font-semibold">Duration</p>
@@ -119,7 +117,7 @@ export default function CourseDetailsClient({ course }: Props) {
             </div>
             <div>
               <p className="font-semibold">Price</p>
-              <p className="text-green-700 font-bold">{course.price}</p>
+              <p className="text-green-700 font-bold">₦{course.price}</p>
             </div>
           </div>
 
@@ -138,23 +136,9 @@ export default function CourseDetailsClient({ course }: Props) {
         {/* Curriculum */}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-gray-800">Course Curriculum</h2>
-          <div className="space-y-4">
-            {course.curriculum?.map((item, idx) => (
-              <div
-                key={idx}
-                className="border border-gray-200 rounded-lg shadow-sm overflow-hidden"
-              >
-                <div className="bg-gray-100 px-5 py-3 text-gray-800 font-semibold">
-                  {item.section}
-                </div>
-                <ul className="px-6 py-4 space-y-2 text-gray-700 text-sm list-disc">
-                  {item.topics.map((topic, i) => (
-                    <li key={i}>{topic}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+            <p className="text-gray-600">{course.curriculum}</p>
+
+          
         </div>
       </section>
 

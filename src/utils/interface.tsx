@@ -52,7 +52,7 @@ export interface CompanyInfo {
 }
 
 export interface CourseProps {
-  id: number;
+  _id: string;
   image: string | StaticImageData;
   course: string;
   title: string;
@@ -61,6 +61,7 @@ export interface CourseProps {
   price: string;
   rating: number;
   description: string;
+  instructorsName:string;
   progress: number;
   isCompleted?: boolean;
   curriculum?: {
