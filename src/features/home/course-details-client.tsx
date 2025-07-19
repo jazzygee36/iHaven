@@ -22,11 +22,9 @@ interface Props {
     duration: string;
     price: string;
     category: string;
-    curriculum: string; 
+    curriculum: string;
   };
 }
-
-
 
 export default function CourseDetailsClient({ course }: Props) {
   const route = useRouter();
@@ -97,48 +95,52 @@ export default function CourseDetailsClient({ course }: Props) {
             />
           </div>
 
-          <div className="space-y-3">
-            <h1 className="text-3xl font-bold text-gray-800">{course.title}</h1>
-            {/* <p className="text-gray-600">{course.curriculum}</p> */}
-          </div>
+          <div className="flex flex-col justify-between w-full ">
+            <div className="space-y-3">
+              <h1 className="text-3xl font-bold text-gray-800">
+                {course.title}
+              </h1>
+              {/* <p className="text-gray-600">{course.curriculum}</p> */}
+            </div>
 
-          <div className="grid grid-cols-2 gap-4 text-sm mt-6 text-gray-700">
-            <div>
-              <p className="font-semibold">Instructor</p>
-              <p>{course.instructorsName}</p>
+            <div className="grid grid-cols-2 gap-4 text-sm mt-6 text-gray-700 w-full">
+              <div>
+                <p className="font-semibold">Instructor</p>
+                <p>{course.instructorsName}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Category</p>
+                <p>{course.category}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Duration</p>
+                <p>{course.duration}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Price</p>
+                <p className="text-green-700 font-bold">₦{course.price}</p>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold">Category</p>
-              <p>{course.category}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Duration</p>
-              <p>{course.duration}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Price</p>
-              <p className="text-green-700 font-bold">₦{course.price}</p>
-            </div>
-          </div>
 
-          <div className="pt-4">
-            <HomeButton
-              title={"Enroll Now"}
-              type={"button"}
-              bg={"#FF6933"}
-              width={"100%"}
-              height={"45px"}
-              onClick={handleLearningType}
-            />
+            <div className="pt-4">
+              <HomeButton
+                title={"Enroll Now"}
+                type={"button"}
+                bg={"#FF6933"}
+                width={"100%"}
+                height={"45px"}
+                onClick={handleLearningType}
+              />
+            </div>
           </div>
         </div>
 
         {/* Curriculum */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-800">Course Curriculum</h2>
-            <p className="text-gray-600">{course.curriculum}</p>
-
-          
+          <h2 className="text-2xl font-bold text-gray-800">
+            Course Curriculum
+          </h2>
+          <p className="text-gray-600">{course.curriculum}</p>
         </div>
       </section>
 

@@ -15,8 +15,8 @@ const ProgramsAvailable = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8">
           {courses.map((course: CourseProps) => (
             <Link
-              key={course.id}
-              href={`/course-details/${course.id}`} // ✅ Use ID
+              key={course._id}
+              href={`/course-details/${course._id}`} // ✅ Use ID
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
             >
               <div className="relative w-full h-48">

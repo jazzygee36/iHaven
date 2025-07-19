@@ -20,7 +20,6 @@ export interface InputProps {
   placeholder: string;
   readOnly?: boolean;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  // onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
   label?: string;
   name?: string;
   value?: string;
@@ -61,11 +60,8 @@ export interface CourseProps {
   price: string;
   rating: number;
   description: string;
-  instructorsName:string;
+  instructorsName: string;
   progress: number;
   isCompleted?: boolean;
-  curriculum?: {
-    section: string;
-    topics: string[];
-  }[];
+  curriculum?: string;
 }

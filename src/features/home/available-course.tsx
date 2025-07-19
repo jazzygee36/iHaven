@@ -40,7 +40,7 @@ const CourseCards = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-3 md:px-10 py-12">
+    <section className="max-w-7xl mx-auto px-3 md:px-10 py-12 bg-white">
       <h2 className="text-[25px] md:text-3xl font-bold text-center text-gray-800 mb-10">
         Our Popular Courses
       </h2>

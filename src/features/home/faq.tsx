@@ -28,7 +28,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto py-16 px-4">
+    <section className="max-w-4xl mx-auto py-16 px-4 bg-white">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
         Frequently Asked <span className="text-[#FF6933]">Questions</span>
       </h2>
@@ -49,7 +49,7 @@ const FAQ = () => {
               </span>
             </button>
             {openIndex === idx && (
-              <div className="px-6 pb-4 text-gray-600 text-sm transition-all duration-300 ease-in-out">
+              <div className="px-6 pb-4 text-gray-600 text-sm transition-all duration-300 ease-in-out ng-white">
                 {faq.answer}
               </div>
             )}

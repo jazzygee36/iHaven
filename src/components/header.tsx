@@ -107,7 +107,7 @@ export default function Header() {
           <div className="absolute z-50 mt-2 bg-white border rounded shadow w-full max-h-60 overflow-y-auto">
             {filteredCourses.map((course) => (
               <div
-                key={course.id}
+                key={course._id}
                 className="px-4 py-2 text-sm cursor-pointer hover:bg-gray-100"
               >
                 {course.title}
