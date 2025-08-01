@@ -84,7 +84,7 @@ const CourseCards = () => {
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-gray-500">Instructor:</span>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 truncate max-w-[60px] sm:max-w-none">
                     {course.instructorsName}
                   </p>
                 </div>

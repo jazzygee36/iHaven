@@ -1,4 +1,5 @@
-import axios from 'axios';
+import api from "@/utils/axiosInstance";
+
 
 interface RegisterPayload {
   fullNames: string;
@@ -7,23 +8,16 @@ interface RegisterPayload {
 }
 
 interface LoginPayload {
- 
   email: string;
   password: string;
 }
 
 export const registerUser = async (data: RegisterPayload) => {
-  const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/register`,
-    data
-  );
+  const res = await api.post("/register", data);
   return res.data;
 };
 
 export const loginUser = async (data: LoginPayload) => {
-  const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/login`,
-    data
-  );
+  const res = await api.post("/login", data);
   return res.data;
 };

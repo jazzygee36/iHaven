@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import { forgetPassword } from "@/api/lib/forget-password";
+import HomeButton from "@/components/button";
+import HomeInput from "@/components/input";
+import Input from "@/components/input";
+import { useState } from "react";
 
-const ForgetPassword = () => {
+const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -10,62 +14,59 @@ const ForgetPassword = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!email) {
-      setError("Email is required.");
-      return;
-    }
-
     setLoading(true);
     setError("");
 
     try {
-      // Replace this with actual API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
+      await forgetPassword({ email });
       setSubmitted(true);
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
+    } catch (err: any) {
+      setError(err?.response?.data?.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Forgot Password</h2>
-        {submitted ? (
-          <p className="text-green-600">
-            If an account with that email exists, a password reset link has been sent.
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="you@example.com"
-              />
-            </div>
+    <div className="w-full max-w-md mx-auto my-10 px-6 py-8 bg-white shadow-xl rounded-2xl">
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+        Forgot your password?
+      </h2>
+      <p className="text-gray-500 text-center mb-6 text-sm">
+        Enter your email address below and we’ll send you a link to reset your
+        password.
+      </p>
 
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+      {submitted ? (
+        <div className="text-center text-green-600 font-medium">
+          ✅ A reset link has been sent to your email.
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <HomeInput
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-              disabled={loading}
-            >
-              {loading ? "Sending..." : "Send Reset Link"}
-            </button>
-          </form>
-        )}
-      </div>
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+          <HomeButton
+            type="submit"
+            className="w-full bg-[#193A8E] hover:bg-blue-700 text-white"
+            title={loading ? "Sending..." : "Send Reset Link"}
+            bg={"#193A8E"}
+            width={"100%"}
+            height={"45px"}
+            disabled={loading}
+          />
+        </form>
+      )}
     </div>
   );
 };
 
-export default ForgetPassword;
+export default ForgotPasswordForm;

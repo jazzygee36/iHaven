@@ -1,21 +1,7 @@
-import axios from 'axios';
-import { getCookie } from 'cookies-next';
+// lib/all-courses.ts
+import api from "@/utils/axiosInstance";
 
 export const getAllCourses = async () => {
-  const token = getCookie("token"); 
-
-  if (!token) {
-    throw new Error("No token found in cookies.");
-  }
-
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/all-courses`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
+  const res = await api.get("/all-courses");
   return res.data;
 };

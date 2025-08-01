@@ -49,7 +49,7 @@ const AutoScrollCardSection = () => {
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto gap-6 scrollbar-hide scroll-smooth"
+          className="flex overflow-x-auto gap-6 scroll-smooth hide-scrollbar"
         >
           {microCourses.map((card: any, index: any) => (
             <div
