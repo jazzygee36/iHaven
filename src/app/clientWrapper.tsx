@@ -4,8 +4,8 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 // import { useRouter } from "next/router";
-import NProgress from "nprogress"; // Optional visual indicator
-import "nprogress/nprogress.css"; // Import NProgress styles
+import NProgress from "nprogress"; 
+import "nprogress/nprogress.css"; 
 import Loading from "@/app/loading";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -73,7 +73,7 @@ export default function ClientWrapper({
     AOS.init({ duration: 1000 });
   }, []);
 
-  if (!hasMounted) return null; // Prevent hydration mismatch
+  if (!hasMounted) return null; 
 
   return (
     <>

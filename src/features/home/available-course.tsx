@@ -5,8 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HomeButton from "@/components/button";
 import { useQuery } from "@tanstack/react-query";
-import { getAllCourses } from "@/api/lib/all-course";
-import { CourseProps } from "@/utils/interface"; // ✅ Ensure this is accurate
+import { CourseProps } from "@/utils/interface"; 
 import { getAllCoursesDashboard } from "@/api/lib/all-courses.dashboard";
 
 const itemsPerPage = 4;
@@ -72,7 +71,7 @@ const CourseCards = () => {
 
               <div className="p-2 md:p-5 space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-[17px] md:text-lg font-semibold text-gray-800">
                     {course.title}
                   </h3>
                 </div>
